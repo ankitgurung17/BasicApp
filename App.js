@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Text, TextInput, StyleSheet, View} from 'react-native';
+import {Button, Text, TextInput, StyleSheet, View} from 'react-native';
 
 
 export default function BasicApp(){
@@ -14,6 +14,9 @@ export default function BasicApp(){
             onChangeText = {text=>onChangeText(text)}
             value = {value} clearTextonFocus = 'false'
             />
+
+            <Button title = 'Clear' onPress={()=>onChangeText('')}/>
+
 
             <Text style = {styles.text}> {value} </Text>
 
