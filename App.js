@@ -1,20 +1,45 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React, {useState} from 'react';
+import {Text, TextInput, StyleSheet, View} from 'react-native';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+
+export default function BasicApp(){
+
+    const [value, onChangeText] = useState('Placeholder');
+    
+
+    return(
+        <View style ={{...styles.container}}>
+
+            <TextInput style = {styles.textinput}
+            onChangeText = {text=>onChangeText(text)}
+            value = {value} clearTextonFocus = 'false'
+            />
+
+            <Text style = {styles.text}> {value} </Text>
+
+        </View>
+    );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+    const styles = StyleSheet.create(
+        {
+            container:{
+                flex:1,
+                justifyContent:'center',
+                alignItems:'center',
+                padding:100,
+                backgroundColor:'yellow'
+            },
+            textinput:{
+                color: 'green',
+                borderColor: 'black',
+                borderWidth: 1,
+                width: '100%',
+                padding:5,
+                margin:10
+            },
+            text:{
+                color: 'black',
+            }
+        }
+    );
