@@ -1,14 +1,20 @@
 import React, {useState} from 'react';
-import {Button, Text, TextInput, StyleSheet, View} from 'react-native';
+import {Button, Switch, Text, TextInput, StyleSheet, View} from 'react-native';
 
 
 export default function BasicApp(){
 
     const [value, onChangeText] = useState('Placeholder');
-    
+    const [backgroundColor, setBackgroundColor] = useState('white');
+    const [isLightBackground, setLightBackground] = useState(true);
+
+    const backGroundColorchangeswitch = () => {
+        const colorChange = isLightBackground ? 'black' : 'white';
+        setBackgroundColor(colorChange);
+        setLightBackground(!isLightBackground); };
 
     return(
-        <View style ={{...styles.container}}>
+        <View style ={{...styles.container, backgroundColor}}>
 
             <TextInput style = {styles.textinput}
             onChangeText = {text=>onChangeText(text)}
@@ -17,9 +23,11 @@ export default function BasicApp(){
 
             <Button title = 'Clear' onPress={()=>onChangeText('')}/>
 
+            <Switch
+                value={!isLightBackground}
+                onValueChange={backGroundColorchangeswitch}/>
 
             <Text style = {styles.text}> {value} </Text>
-
         </View>
     );
 }
@@ -31,7 +39,7 @@ export default function BasicApp(){
                 justifyContent:'center',
                 alignItems:'center',
                 padding:100,
-                backgroundColor:'yellow'
+                
             },
             textinput:{
                 color: 'green',
@@ -39,10 +47,10 @@ export default function BasicApp(){
                 borderWidth: 1,
                 width: '100%',
                 padding:5,
-                margin:10
+                margin:10,
             },
             text:{
                 color: 'black',
-            }
+            },
         }
     );
